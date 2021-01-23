@@ -46,7 +46,17 @@ for i in range(1,len(data_lines)):
     if data_lines[i][1] == player_two:
         player_two_data = data_lines[i]
 
-
+#RBIs
+if trade_type == "B":
+    rbis = float(player_two_data[10])
+    runs = float(player_two_data[5])
+    hrs = float(player_two_data[9])
+    player_two_strength = (0.5 * rbis) + (0.2 * runs) + (hrs)
+else:
+    era = float(player_two_data[15])
+    strikeouts = float(player_two_data[11])
+    walks = float(player_two_data[10])
+    player_two_strength = (80 - 10 * era) + (0.2 * strikeouts) - (0.1 * walks)
 
 print(player_one + " has a computed strength of " + str(player_one_strength))
 print(player_two + " has a computed strength of " + str(player_two_strength))
